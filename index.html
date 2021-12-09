@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>Калькулятор</title>
+     <style>
+     	* {
+    margin: 0;
+}
+body{
+  	background: linear-gradient(yellow, 10%, pink);
+  	background: linear-gradient(yellow, pink);
+}
+head {
+    width: 300px;
+    height: 100px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    margin-left: 60px;
+}
+p {
+    margin-top: 10px;
+    margin-left: 60px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+.non {
+  	width: 50px;
+	height:50px;
+	margin-top: 5px;
+	width: 66px;
+	height: 36px;
+	margin: 4px 7px 11px 0;
+}
+.result{
+	margin-top: 0px;
+	margin-left: 10px;
+	background-color: rgb(90,121,134); 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	height: 40px;
+	background: #ffffff;
+	color: rgb(8, 8, 8);
+	font-weight: bold;
+} 
+.error{
+	margin-top: 10px;
+	color: red;
+	width: 30px;
+	display: flex;
+	font-size: 20px;	
+} 
+     </style>
+  </head>
+<body>
+	<div class="head">
+		<input type="text" id="calculator"> 
+		<div class="calc">
+		<div>
+        <input class="non" type="button" value="+" onclick="sumb(this.value)">
+        <input class="non" type="button" value="-" onclick="sumb(this.value)">
+		</div>
+		</div>
+		<div>
+		<input class="non" type="button" value="1" onclick="calc(this.value)">
+		<input class="non" type="button" value="2" onclick="calc(this.value)">
+		<input class="non" type="button" value="3" onclick="calc(this.value)">
+		<input class="non" type="button" value="4" onclick="calc(this.value)">
+		<input class="non" type="button" value="5" onclick="calc(this.value)">
+		<input class="non" type="button" value="6" onclick="calc(this.value)">
+		<input class="non" type="button" value="7" onclick="calc(this.value)">
+		<input class="non" type="button" value="8" onclick="calc(this.value)">
+		<input class="non" type="button" value="9" onclick="calc(this.value)">
+		</div>
+		<div>
+		<p id="error" class="error"></p>
+		<p id="result" class="result"></p>
+	</div>
+</body> 
+
+<script >
+var numner_one;
+var numner_two;
+var symb;		
+    function calc(number, subm) {
+
+        if(numner_one == undefined ){
+            numner_one = number
+            document.getElementById('calculator').value += number
+            document.getElementById('error').textContent = undefined
+        } 
+
+        else if(symb == undefined && numner_one != undefined){
+            document.getElementById('error').textContent = 'Введите знак!'
+        }
+
+
+        
+        else if(numner_two == undefined){
+            numner_two = number
+            document.getElementById('calculator').value += number
+
+            if(symb == '+'){
+                 
+                document.getElementById('result').textContent = Number(numner_one) + Number(numner_two)
+                document.getElementById('error').textContent = undefined
+            }
+            else if(symb == '-'){
+               
+                document.getElementById('result').textContent = Number(numner_one) - Number(numner_two)
+                document.getElementById('error').textContent = undefined
+            }
+        }
+        else if(numner_one !=undefined && symb != undefined && numner_two != undefined){
+            numner_one = number
+            symb = undefined
+            numner_two = undefined
+            document.getElementById('calculator').value = number
+            document.getElementById('error').textContent = undefined
+      
+        }
+
+        else if(symb == undefined && numner_one == undefined){
+            document.getElementById('error').textContent = 'Error'
+        }
+        else {
+            document.getElementById('error').textContent = 'Error'
+        }     
+    
+    }
+    function sumb(sym){
+        if(symb == undefined && numner_one != undefined)
+        {
+            symb = sym
+            document.getElementById('calculator').value += sym
+            document.getElementById('error').textContent = undefined
+        }
+        else{
+            document.getElementById('error').textContent = 'Введите число!'
+        }
+    }
+
+</script> 
+  </body>
+</html>
